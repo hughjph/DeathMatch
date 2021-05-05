@@ -14,7 +14,7 @@ public class LeaderBoard {
 
     public static void loadScoreboard(){
         scoreboard = scoreboardManager.getNewScoreboard();
-        Objective objective = scoreboard.registerNewObjective("test12345", "test1", "Name");
+        Objective objective = scoreboard.registerNewObjective("DeathMatch Scorboard", "test1", "DEATHMATCH");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
         Score score = objective.getScore(" AKLSJDSA ");
@@ -28,9 +28,6 @@ public class LeaderBoard {
 
 
 
-        /*Objective objective = scoreboard.registerNewObjective("test12345", "test1");
-        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective.setDisplayName("NAMEEE");*/
 
 
 
