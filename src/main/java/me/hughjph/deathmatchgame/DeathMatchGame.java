@@ -1,5 +1,9 @@
 package me.hughjph.deathmatchgame;
 
+import me.hughjph.deathmatchgame.commands.AcceptMatch;
+import me.hughjph.deathmatchgame.commands.InviteToDeathMatch;
+import me.hughjph.deathmatchgame.commands.StartDeathMatch;
+import me.hughjph.deathmatchgame.commands.StartDeathMatchLobby;
 import me.hughjph.deathmatchgame.gamemode.LeaderBoard;
 import me.hughjph.deathmatchgame.gamemode.Lobby;
 import org.bukkit.entity.Player;
@@ -20,5 +24,22 @@ public final class DeathMatchGame extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new Listener(), this);
 
+
+        registerCommands();
+
     }
+
+
+
+    public void registerCommands(){
+
+        getCommand("startlobby").setExecutor(new StartDeathMatchLobby());
+        getCommand("startgame").setExecutor(new StartDeathMatchLobby());
+        getCommand("join").setExecutor(new AcceptMatch());
+        getCommand("invite").setExecutor(new InviteToDeathMatch());
+
+    }
+
+
+
 }
