@@ -53,6 +53,7 @@ public class InviteToDeathMatch implements CommandExecutor {
                 for(Player invitedPlayer: invitedPlayers){
                     if(DeathMatchGame.invitedPlayers.containsKey(invitedPlayer)){
                         invitedPlayer.sendMessage("Invite has expired");
+                        DeathMatchGame.invitedPlayers.remove(invitedPlayer);
                     }
                 }
                 player.sendMessage("Pending invites have expired");

@@ -30,4 +30,19 @@ public class Lobby {
         }
     }
 
+
+    public String getPlayerList() {
+        String output = "";
+
+        for(Player player : players){
+            output += player.getName();
+            if(player == leader){
+                output += "(L)";
+            }
+            output += ", ";
+        }
+
+        return output.substring(0, output.length() - 2);
+    }
+
 }
