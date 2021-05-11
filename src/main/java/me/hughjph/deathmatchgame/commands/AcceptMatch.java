@@ -17,8 +17,9 @@ public class AcceptMatch implements CommandExecutor {
 
         if(DeathMatchGame.invitedPlayers.containsKey(player)){
 
-            Lobby lobby = DeathMatchGame.lobbies.get(player);
+            Lobby lobby = DeathMatchGame.invitedPlayers.get(player);
             lobby.addPlayer(player);
+            DeathMatchGame.playersInLobbies.put(player, lobby);
             player.sendMessage("You have been added to the lobby!");
 
         } else{

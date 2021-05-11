@@ -1,9 +1,7 @@
 package me.hughjph.deathmatchgame;
 
-import me.hughjph.deathmatchgame.commands.AcceptMatch;
-import me.hughjph.deathmatchgame.commands.InviteToDeathMatch;
-import me.hughjph.deathmatchgame.commands.StartDeathMatch;
-import me.hughjph.deathmatchgame.commands.StartDeathMatchLobby;
+import com.sun.xml.internal.ws.wsdl.writer.document.Part;
+import me.hughjph.deathmatchgame.commands.*;
 import me.hughjph.deathmatchgame.gamemode.LeaderBoard;
 import me.hughjph.deathmatchgame.gamemode.Lobby;
 import org.bukkit.entity.Player;
@@ -13,8 +11,12 @@ import java.util.HashMap;
 
 public final class DeathMatchGame extends JavaPlugin {
 
+    //keeps track of the lobbies and their leaders
     public static HashMap<Player, Lobby> lobbies = new HashMap<>();
+    //keeps track of the players who are invited to a lobby
     public static HashMap<Player, Lobby> invitedPlayers = new HashMap<>();
+    //keeps track of the players and the lobbies they're in
+    public static HashMap<Player, Lobby> playersInLobbies = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -36,7 +38,7 @@ public final class DeathMatchGame extends JavaPlugin {
         getCommand("startlobby").setExecutor(new StartDeathMatchLobby());
         getCommand("startgame").setExecutor(new StartDeathMatchLobby());
         getCommand("join").setExecutor(new AcceptMatch());
-        getCommand("invite").setExecutor(new InviteToDeathMatch());
+        getCommand("party").setExecutor(new Party());
 
     }
 

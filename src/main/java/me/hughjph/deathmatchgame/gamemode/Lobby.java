@@ -9,7 +9,7 @@ public class Lobby {
 
     Player leader;
     List<Player> players;
-
+    List<Player> playersWhoCanInvite;
 
 
     public Lobby(Player player){
@@ -30,6 +30,25 @@ public class Lobby {
         }
     }
 
+    public void allowInvite(Player player){
+        if(!(playersWhoCanInvite.contains(player))){
+            playersWhoCanInvite.add(player);
+        }
+    }
+
+    public void removeInvite(Player player){
+        if(playersWhoCanInvite.contains(player)){
+            playersWhoCanInvite.remove(player);
+        }
+    }
+
+    public boolean getInvitePerm(Player player){
+        if(playersWhoCanInvite.contains(player)){
+            return true;
+        }
+        else return false;
+    }
+
 
     public String getPlayerList() {
         String output = "";
@@ -44,5 +63,7 @@ public class Lobby {
 
         return output.substring(0, output.length() - 2);
     }
+
+
 
 }

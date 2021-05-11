@@ -1,5 +1,6 @@
 package me.hughjph.deathmatchgame.commands;
 
+import me.hughjph.deathmatchgame.DeathMatchGame;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -7,7 +8,9 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import static me.hughjph.deathmatchgame.commands.PartySubCommands.Help.showHelp;
+import static me.hughjph.deathmatchgame.commands.PartySubCommands.Invite.invite;
 import static me.hughjph.deathmatchgame.commands.PartySubCommands.List.showList;
+
 
 public class Party implements CommandExecutor {
     @Override
@@ -15,6 +18,11 @@ public class Party implements CommandExecutor {
         if(! (sender instanceof Player)) return false;
 
         Player player = (Player) sender;
+
+        if(!(DeathMatchGame.playersInLobbies.containsKey(player))){
+            player.sendMessage("You are not in a party!");
+        }
+
 
         if(args.length == 0){
             showHelp(player);
@@ -25,8 +33,8 @@ public class Party implements CommandExecutor {
 
         if(subCommand.equalsIgnoreCase("list")){
             showList(player);
-        } else{
-            showHelp(player);
+        } else if (subCommand.equalsIgnoreCase("invite")){
+            invite(player, args);
         }
 
         return true;

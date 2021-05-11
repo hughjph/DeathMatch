@@ -1,37 +1,38 @@
-package me.hughjph.deathmatchgame.commands;
+package me.hughjph.deathmatchgame.commands.PartySubCommands;
 
 import me.hughjph.deathmatchgame.DeathMatchGame;
 import me.hughjph.deathmatchgame.gamemode.Lobby;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class InviteToDeathMatch implements CommandExecutor {
-    @Deprecated
-    @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(!(sender instanceof Player)) return false;
-        if(!(DeathMatchGame.lobbies.containsKey((Player) sender))) return false;
+public class Invite {
 
-        Player player = (Player) sender;
 
-        if(args.length == 0){
+    public static boolean invite(Player player, String[] players) {
+
+        players = Arrays.copyOfRange(players, 1, players.length);
+
+
+        if(players.length == 0){
             player.sendMessage("You need to have at least one player invited");
         }
 
-        Lobby lobby = DeathMatchGame.lobbies.get(player);
+        Lobby lobby = DeathMatchGame.playersInLobbies.get(player);
+
+        if(!(lobby.getInvitePerm(player))) {
+            player.sendMessage(ChatColor.RED + "You do not have permission to invite players!");
+        }
 
         List<Player> invitedPlayers = new ArrayList<>();
 
 
-        for(String name : args){
+        for(String name : players){
             Player invitedPlayer = Bukkit.getPlayerExact(name);
             if(invitedPlayer != null){
 

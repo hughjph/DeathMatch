@@ -2,3 +2,11 @@ name: DeathMatchGame
 version: ${project.version}
 main: me.hughjph.deathmatchgame.DeathMatchGame
 api-version: 1.16
+
+commands:
+  party :
+    description: a list of party commands
+    aliases: p
+  startlobby:
+    description: starts a death match lobby
+    permission: deathmatch.startdeathmatch
