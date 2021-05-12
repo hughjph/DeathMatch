@@ -35,6 +35,8 @@ public class StartDeathMatch implements CommandExecutor {
         for(Player lobbyPlayer : lobby.getPlayers()){
             lobbyPlayer.teleport(world.getSpawnLocation());
             lobbyPlayer.setGameMode(GameMode.SPECTATOR);
+            DeathMatchGame.playersInLobbies.remove(lobbyPlayer);
+            DeathMatchGame.playersInGames.put(lobbyPlayer, lobby);
         }
 
 
