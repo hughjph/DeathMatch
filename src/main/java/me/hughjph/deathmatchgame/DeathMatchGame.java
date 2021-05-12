@@ -11,12 +11,17 @@ import java.util.HashMap;
 
 public final class DeathMatchGame extends JavaPlugin {
 
+    public static long worldIndex = 0000;
+
     //keeps track of the lobbies and their leaders
     public static HashMap<Player, Lobby> lobbies = new HashMap<>();
     //keeps track of the players who are invited to a lobby
     public static HashMap<Player, Lobby> invitedPlayers = new HashMap<>();
     //keeps track of the players and the lobbies they're in
     public static HashMap<Player, Lobby> playersInLobbies = new HashMap<>();
+    //keeps track of players that are currently in a deathmatch
+    public static HashMap<Player, Lobby> playersInGames = new HashMap<>();
+
 
     @Override
     public void onEnable() {

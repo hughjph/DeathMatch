@@ -10,3 +10,4 @@ commands:
   startlobby:
     description: starts a death match lobby
     permission: deathmatch.startdeathmatch
+

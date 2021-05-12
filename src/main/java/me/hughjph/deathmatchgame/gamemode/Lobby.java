@@ -30,6 +30,10 @@ public class Lobby {
         }
     }
 
+    public List<Player> getPlayers(){
+        return players;
+    }
+
     public void allowInvite(Player player){
         if(!(playersWhoCanInvite.contains(player))){
             playersWhoCanInvite.add(player);
