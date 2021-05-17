@@ -3,13 +3,16 @@ package me.hughjph.deathmatchgame.gamemode;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.SortedMap;
 
 public class Lobby {
 
     Player leader;
     List<Player> players;
     List<Player> playersWhoCanInvite;
+    SortedMap<Player, Integer> playerKills;
 
 
     public Lobby(Player player){
@@ -19,6 +22,12 @@ public class Lobby {
         leader = player;
         players.add(player);
     }
+
+    public SortedMap<Player, Integer> getPlayerKills(boolean ordered){
+
+        return playerKills;
+    }
+
 
     public void addPlayer(Player player){
         players.add(player);
