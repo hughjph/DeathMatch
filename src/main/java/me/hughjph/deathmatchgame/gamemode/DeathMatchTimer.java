@@ -3,6 +3,7 @@ package me.hughjph.deathmatchgame.gamemode;
 import me.hughjph.deathmatchgame.DeathMatchGame;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Iterator;
@@ -67,8 +68,23 @@ public class DeathMatchTimer {
                     DeathMatchGame.playersInLobbies.put(player, lobby);
                 }
 
+                startEndTimer(lobby);
+
             }
         }.runTaskLater(DeathMatchGame.getPlugin(DeathMatchGame.class), 20*60*5);
+
+    }
+
+
+    public static void startEndTimer(Lobby lobby){
+
+        new BukkitRunnable(){
+            @Override
+            public void run(){
+                //TODO Teleport back to main lobby
+            }
+        }.runTaskLater(DeathMatchGame.getPlugin(DeathMatchGame.class), 20*5);
+
 
     }
 
