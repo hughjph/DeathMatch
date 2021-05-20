@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import static me.hughjph.deathmatchgame.gamemode.DeathMatchTimer.startTimer;
+
 public class StartDeathMatch implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -39,7 +41,7 @@ public class StartDeathMatch implements CommandExecutor {
             DeathMatchGame.playersInGames.put(lobbyPlayer, lobby);
         }
 
-
+        startTimer(lobby);
 
         return false;
     }

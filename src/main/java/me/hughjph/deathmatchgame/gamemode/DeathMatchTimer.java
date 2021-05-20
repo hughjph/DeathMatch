@@ -11,7 +11,7 @@ import java.util.SortedMap;
 
 public class DeathMatchTimer {
 
-    public void startTimer(Lobby lobby){
+    public static void startTimer(Lobby lobby){
 
         new BukkitRunnable() {
 
@@ -46,8 +46,6 @@ public class DeathMatchTimer {
                     } else if(numberOfKills > playerKills.get(number3)){
                         number3 = player;
                     }
-
-
                 }
 
 
@@ -64,7 +62,11 @@ public class DeathMatchTimer {
                     }
 
                     player.setGameMode(GameMode.SPECTATOR);
+
+                    DeathMatchGame.playersInGames.remove(player);
+                    DeathMatchGame.playersInLobbies.put(player, lobby);
                 }
+
             }
         }.runTaskLater(DeathMatchGame.getPlugin(DeathMatchGame.class), 20*60*5);
 
