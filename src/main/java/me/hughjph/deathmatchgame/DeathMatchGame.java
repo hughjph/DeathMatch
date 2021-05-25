@@ -32,7 +32,9 @@ public final class DeathMatchGame extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new Listener(), this);
 
+        this.saveDefaultConfig();
 
+        loadConfig();
         registerCommands();
 
     }
@@ -49,5 +51,9 @@ public final class DeathMatchGame extends JavaPlugin {
     }
 
 
+    public void loadConfig(){
+        mainWorld = (String) this.getConfig().get("mainworld");
+
+    }
 
 }
