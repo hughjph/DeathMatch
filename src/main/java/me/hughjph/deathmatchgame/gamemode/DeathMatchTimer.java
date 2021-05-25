@@ -1,7 +1,9 @@
 package me.hughjph.deathmatchgame.gamemode;
 
 import me.hughjph.deathmatchgame.DeathMatchGame;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -81,7 +83,15 @@ public class DeathMatchTimer {
         new BukkitRunnable(){
             @Override
             public void run(){
-                //TODO Teleport back to main lobby
+                List<Player> players = lobby.getPlayers();
+
+                World mainWorld = Bukkit.getWorld(DeathMatchGame.mainWorld);
+
+                for(Player player : players){
+                    player.teleport(mainWorld.getSpawnLocation());
+                }
+
+                lobby.getDeathMatchArena().getWorldFolder().delete();
             }
         }.runTaskLater(DeathMatchGame.getPlugin(DeathMatchGame.class), 20*5);
 

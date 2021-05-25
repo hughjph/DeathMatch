@@ -1,5 +1,8 @@
 package me.hughjph.deathmatchgame.gamemode;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -13,7 +16,7 @@ public class Lobby {
     List<Player> players;
     List<Player> playersWhoCanInvite;
     SortedMap<Player, Integer> playerKills;
-
+    World deathMatchArena;
 
     public Lobby(Player player){
 
@@ -24,10 +27,15 @@ public class Lobby {
     }
 
     public SortedMap<Player, Integer> getPlayerKills(boolean ordered){
-
         return playerKills;
     }
 
+    public World getDeathMatchArena(){
+        return deathMatchArena;
+    }
+    public void setDeathMatchArena(World world) {
+        deathMatchArena = world;
+    }
 
     public void addPlayer(Player player){
         players.add(player);

@@ -41,6 +41,7 @@ public class StartDeathMatch implements CommandExecutor {
             DeathMatchGame.playersInGames.put(lobbyPlayer, lobby);
         }
 
+        lobby.setDeathMatchArena(world);
         startTimer(lobby);
 
         return false;

@@ -21,7 +21,8 @@ public final class DeathMatchGame extends JavaPlugin {
     public static HashMap<Player, Lobby> playersInLobbies = new HashMap<>();
     //keeps track of players that are currently in a deathmatch
     public static HashMap<Player, Lobby> playersInGames = new HashMap<>();
-
+    //main world name
+    public static String mainWorld = "world";
 
     @Override
     public void onEnable() {
