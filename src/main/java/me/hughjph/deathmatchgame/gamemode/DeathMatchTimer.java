@@ -89,6 +89,7 @@ public class DeathMatchTimer {
 
                 for(Player player : players){
                     player.teleport(mainWorld.getSpawnLocation());
+                    player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
                 }
 
                 lobby.getDeathMatchArena().getWorldFolder().delete();
