@@ -4,6 +4,8 @@ import jdk.nashorn.internal.objects.annotations.Getter;
 import jdk.nashorn.internal.objects.annotations.Setter;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,11 +19,12 @@ public class Lobby {
     List<Player> playersWhoCanInvite;
     SortedMap<Player, Integer> playerKills;
     World deathMatchArena;
+    long lobbyIndex;
+    Scoreboard scoreboard;
 
     public Lobby(Player player){
 
         players = new ArrayList<>();
-
         leader = player;
         players.add(player);
     }
@@ -37,8 +40,17 @@ public class Lobby {
         deathMatchArena = world;
     }
 
+
     public void addPlayer(Player player){
         players.add(player);
+    }
+
+    public long getLobbyIndex(){
+        return lobbyIndex;
+    }
+
+    public void setLobbyIndex(long index){
+        lobbyIndex = index;
     }
 
     public void removePlayer(Player player){

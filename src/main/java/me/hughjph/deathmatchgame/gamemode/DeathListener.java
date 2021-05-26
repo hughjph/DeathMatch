@@ -19,7 +19,7 @@ public class DeathListener implements Listener {
         Player deadPlayer = event.getEntity();
         Player killer = deadPlayer.getKiller();
 
-
+        LeaderBoard.updateDeathMatchScoreboard(DeathMatchGame.playersInGames.get(killer), killer);
 
         new BukkitRunnable(){
             int countdown = 5;

@@ -1,6 +1,7 @@
 package me.hughjph.deathmatchgame.commands;
 
 import me.hughjph.deathmatchgame.DeathMatchGame;
+import me.hughjph.deathmatchgame.gamemode.LeaderBoard;
 import me.hughjph.deathmatchgame.gamemode.Lobby;
 import org.bukkit.*;
 import org.bukkit.command.Command;
@@ -22,6 +23,7 @@ public class StartDeathMatch implements CommandExecutor {
         Lobby lobby = DeathMatchGame.lobbies.get(player);
 
         WorldCreator creator = new WorldCreator("DeathmatchWorld" + DeathMatchGame.worldIndex);
+        lobby.setLobbyIndex(DeathMatchGame.worldIndex);
         DeathMatchGame.worldIndex++;
 
         creator.environment(World.Environment.NORMAL);
@@ -42,6 +44,7 @@ public class StartDeathMatch implements CommandExecutor {
         }
 
         lobby.setDeathMatchArena(world);
+        LeaderBoard.createDeathMatchScoredboard(lobby);
         startTimer(lobby);
 
         return false;
