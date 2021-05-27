@@ -94,6 +94,7 @@ public class DeathMatchTimer {
                     player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
                     PlayerInventory inv = DeathMatchGame.playerInventories.get(player);
 
+                    player.getInventory().clear();
                     player.getInventory().setContents(inv.getArmorContents());
                     player.getInventory().setContents(inv.getContents());
                     player.getInventory().setExtraContents(inv.getExtraContents());
