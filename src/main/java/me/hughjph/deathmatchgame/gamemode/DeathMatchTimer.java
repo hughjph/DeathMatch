@@ -6,6 +6,8 @@ import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Iterator;
@@ -90,6 +92,13 @@ public class DeathMatchTimer {
                 for(Player player : players){
                     player.teleport(mainWorld.getSpawnLocation());
                     player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+                    PlayerInventory inv = DeathMatchGame.playerInventories.get(player);
+
+                    player.getInventory().setContents(inv.getArmorContents());
+                    player.getInventory().setContents(inv.getContents());
+                    player.getInventory().setExtraContents(inv.getExtraContents());
+
+                    DeathMatchGame.playerInventories.remove(player);
                 }
 
                 lobby.getDeathMatchArena().getWorldFolder().delete();

@@ -4,9 +4,13 @@ import com.sun.xml.internal.ws.wsdl.writer.document.Part;
 import me.hughjph.deathmatchgame.commands.*;
 import me.hughjph.deathmatchgame.gamemode.LeaderBoard;
 import me.hughjph.deathmatchgame.gamemode.Lobby;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.swing.*;
 import java.util.HashMap;
 
 public final class DeathMatchGame extends JavaPlugin {
@@ -23,6 +27,11 @@ public final class DeathMatchGame extends JavaPlugin {
     public static HashMap<Player, Lobby> playersInGames = new HashMap<>();
     //main world name
     public static String mainWorld = "world";
+    //keeps track of player inventories while they are in game
+    public static HashMap<Player, PlayerInventory> playerInventories = new HashMap<>();
+
+
+
 
     @Override
     public void onEnable() {

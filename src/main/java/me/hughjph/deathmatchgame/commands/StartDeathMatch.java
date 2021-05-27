@@ -7,7 +7,9 @@ import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import static me.hughjph.deathmatchgame.gamemode.DeathMatchTimer.startTimer;
@@ -36,11 +38,23 @@ public class StartDeathMatch implements CommandExecutor {
 
         world.getSpawnLocation();
 
+        ItemStack infinityBow = new ItemStack(Material.BOW);
+        infinityBow.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+
         for(Player lobbyPlayer : lobby.getPlayers()){
             lobbyPlayer.teleport(world.getSpawnLocation());
             lobbyPlayer.setGameMode(GameMode.SPECTATOR);
             DeathMatchGame.playersInLobbies.remove(lobbyPlayer);
             DeathMatchGame.playersInGames.put(lobbyPlayer, lobby);
+            DeathMatchGame.playerInventories.put(player, player.getInventory());
+            player.getInventory().clear();
+
+            player.getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD), infinityBow, new ItemStack(Material.ARROW, 64));
+            player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS));
+            player.getInventory().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
+            player.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
+            player.getInventory().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
+
         }
 
         lobby.setDeathMatchArena(world);
