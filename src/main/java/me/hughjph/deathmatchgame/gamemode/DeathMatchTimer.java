@@ -24,11 +24,7 @@ public class DeathMatchTimer {
 
                 HashMap<Player, Integer> playerKills = lobby.getPlayerKills();
 
-                Player number1 = null;
-                Player number2 = null;
-                Player number3 = null;
-                
-                
+
                 List<Player> playerArray = new ArrayList<>();
 
                 List<Player> addedPlayers = new ArrayList<>();
