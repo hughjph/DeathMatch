@@ -17,7 +17,7 @@ public class Lobby {
     Player leader;
     List<Player> players;
     List<Player> playersWhoCanInvite;
-    SortedMap<Player, Integer> playerKills;
+    HashMap<Player, Integer> playerKills;
     World deathMatchArena;
     long lobbyIndex;
     Scoreboard scoreboard;
@@ -25,11 +25,13 @@ public class Lobby {
     public Lobby(Player player){
 
         players = new ArrayList<>();
+        playerKills = new HashMap<>();
         leader = player;
         players.add(player);
+        playerKills.put(player, 0);
     }
 
-    public SortedMap<Player, Integer> getPlayerKills(boolean ordered){
+    public HashMap<Player, Integer> getPlayerKills(){
         return playerKills;
     }
 
@@ -43,6 +45,7 @@ public class Lobby {
 
     public void addPlayer(Player player){
         players.add(player);
+        playerKills.put(player, 0);
     }
 
     public long getLobbyIndex(){
@@ -56,8 +59,11 @@ public class Lobby {
     public void removePlayer(Player player){
         if(players.contains(player)){
             players.remove(player);
+            playerKills.remove(player);
         }
     }
+
+
 
     public List<Player> getPlayers(){
         return players;

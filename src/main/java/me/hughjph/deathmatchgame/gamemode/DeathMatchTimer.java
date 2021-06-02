@@ -10,9 +10,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.SortedMap;
+import java.util.*;
 
 public class DeathMatchTimer {
 
@@ -24,13 +22,39 @@ public class DeathMatchTimer {
             public void run(){
                 List<Player> players = lobby.getPlayers();
 
-                SortedMap<Player, Integer>  playerKills = lobby.getPlayerKills(true);
+                HashMap<Player, Integer> playerKills = lobby.getPlayerKills();
 
                 Player number1 = null;
                 Player number2 = null;
                 Player number3 = null;
+                
+                
+                List<Player> playerArray = new ArrayList<>();
 
+                List<Player> addedPlayers = new ArrayList<>();
+
+                for(int i = 0; i < lobby.getPlayerKills().size(); i++){
+
+                    Player newPlayer = null;
+
+                    for(Player player : players){
+                        if(!addedPlayers.contains(player)){
+                            newPlayer = player;
+                            if(lobby.getPlayerKills().get(player) > lobby.getPlayerKills().get(newPlayer)){
+                                newPlayer = player;
+                            }
+                        }
+                    }
+
+                    addedPlayers.add(newPlayer);
+                    playerArray.set(i, newPlayer);
+
+                }
+
+                /*
                 for(Player player: lobby.getPlayers()){
+
+
                     Integer numberOfKills = playerKills.get(player);
 
                     if(number1 == null){
@@ -45,26 +69,19 @@ public class DeathMatchTimer {
                         number3 = number2;
                         number2 = number1;
                         number1 = player;
-                    } else if(numberOfKills > playerKills.get(number2)){
+                    } else if(numberOfKills > playerKills.get(number2) && lobby.getPlayers().size() > 1){
                         number3 = number2;
                         number2 = player;
-                    } else if(numberOfKills > playerKills.get(number3)){
+                    } else if(numberOfKills > playerKills.get(number3) && lobby.getPlayers().size() > 2){
                         number3 = player;
                     }
-                }
+                }*/
 
 
                 for(Player player : players){
 
-                    if (player == number1) {
-                        player.sendMessage("You WIN!");
-                    } else if(player == number2){
-                        player.sendMessage("2nd Place!");
-                    } else if(player == number3){
-                        player.sendMessage("3rd Place!");
-                    } else{
-                        player.sendMessage("GAME OVER!");
-                    }
+                    int position = playerArray.indexOf(player);
+                    player.sendMessage("Your position was number " + position);
 
                     player.setGameMode(GameMode.SPECTATOR);
 
@@ -75,7 +92,7 @@ public class DeathMatchTimer {
                 startEndTimer(lobby);
 
             }
-        }.runTaskLater(DeathMatchGame.getPlugin(DeathMatchGame.class), 20*60*5);
+        }.runTaskLater(DeathMatchGame.getPlugin(DeathMatchGame.class), 20*5);
 
     }
 

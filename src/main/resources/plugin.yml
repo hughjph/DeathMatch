@@ -10,4 +10,7 @@ commands:
   startlobby:
     description: starts a death match lobby
     permission: deathmatch.startdeathmatch
-
+  startgame:
+    description: does what is says on the tin
+  join:
+    description: joins

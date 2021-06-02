@@ -16,7 +16,7 @@ public class LeaderBoard {
 
     public static void loadScoreboard(){
         scoreboard = scoreboardManager.getNewScoreboard();
-        Objective objective = scoreboard.registerNewObjective("DeathMatch Scorboard", "test1", "DEATHMATCH");
+        Objective objective = scoreboard.registerNewObjective("Scoreboard", "test1", "DEATHMATCH");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
         Score score = objective.getScore(" AKLSJDSA ");
@@ -42,7 +42,11 @@ public class LeaderBoard {
 
         for(Player player : players) {
             Score score = objective.getScore(player.getName());
-            score.setScore(lobby.playerKills.get(player));
+            if(lobby.playerKills.get(player) == null){
+                score.setScore(0);
+            } else{
+                score.setScore(lobby.playerKills.get(player));
+            }
             player.setScoreboard(scoreboard);
         }
 

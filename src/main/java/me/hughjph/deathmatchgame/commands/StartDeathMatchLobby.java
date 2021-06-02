@@ -1,5 +1,6 @@
 package me.hughjph.deathmatchgame.commands;
 
+import me.hughjph.deathmatchgame.DeathMatchGame;
 import me.hughjph.deathmatchgame.gamemode.Lobby;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,7 +19,8 @@ public class StartDeathMatchLobby implements CommandExecutor {
         player.sendMessage("New death match lobby create, use /invite <player> to invite your friends");
 
         Lobby lobby = new Lobby(player);
-
+        DeathMatchGame.playersInLobbies.put(player, lobby);
+        DeathMatchGame.lobbies.put(player, lobby);
         return true;
     }
 }

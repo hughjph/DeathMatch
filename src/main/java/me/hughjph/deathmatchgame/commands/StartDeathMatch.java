@@ -43,12 +43,13 @@ public class StartDeathMatch implements CommandExecutor {
 
         for(Player lobbyPlayer : lobby.getPlayers()){
             lobbyPlayer.teleport(world.getSpawnLocation());
-            lobbyPlayer.setGameMode(GameMode.SPECTATOR);
+            lobbyPlayer.setGameMode(GameMode.SURVIVAL);
             DeathMatchGame.playersInLobbies.remove(lobbyPlayer);
             DeathMatchGame.playersInGames.put(lobbyPlayer, lobby);
             DeathMatchGame.playerInventories.put(player, player.getInventory());
             player.getInventory().clear();
 
+            player.setMaxHealth(20);
             player.getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD), infinityBow, new ItemStack(Material.ARROW, 64));
             player.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS));
             player.getInventory().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));

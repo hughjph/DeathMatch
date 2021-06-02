@@ -1,16 +1,14 @@
 package me.hughjph.deathmatchgame;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.Part;
-import me.hughjph.deathmatchgame.commands.*;
-import me.hughjph.deathmatchgame.gamemode.LeaderBoard;
-import me.hughjph.deathmatchgame.gamemode.Lobby;
-import org.bukkit.Bukkit;
+import me.hughjph.deathmatchgame.commands.AcceptMatch;
+import me.hughjph.deathmatchgame.commands.Party;
+import me.hughjph.deathmatchgame.commands.StartDeathMatch;
+import me.hughjph.deathmatchgame.commands.StartDeathMatchLobby;
+import me.hughjph.deathmatchgame.gamemode.*;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.swing.*;
 import java.util.HashMap;
 
 public final class DeathMatchGame extends JavaPlugin {
@@ -40,6 +38,10 @@ public final class DeathMatchGame extends JavaPlugin {
         LeaderBoard.loadScoreboard();
 
         getServer().getPluginManager().registerEvents(new Listener(), this);
+        getServer().getPluginManager().registerEvents(new BlockBreak(), this);
+        getServer().getPluginManager().registerEvents(new DamagerListener(), this);
+        getServer().getPluginManager().registerEvents(new DeathListener(), this);
+
 
         this.saveDefaultConfig();
 
@@ -53,7 +55,7 @@ public final class DeathMatchGame extends JavaPlugin {
     public void registerCommands(){
 
         getCommand("startlobby").setExecutor(new StartDeathMatchLobby());
-        getCommand("startgame").setExecutor(new StartDeathMatchLobby());
+        getCommand("startgame").setExecutor(new StartDeathMatch());
         getCommand("join").setExecutor(new AcceptMatch());
         getCommand("party").setExecutor(new Party());
 

@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 public class List {
 
     public static void showList(Player sender){
-        Lobby lobby = DeathMatchGame.lobbies.get(sender);
+        Lobby lobby = DeathMatchGame.playersInLobbies.get(sender);
 
         sender.sendMessage(ChatColor.GOLD + "Players in your party: ");
-        sender.sendMessage(lobby.getPlayerList());
+        sender.sendMessage(lobby.getPlayerList() + " ");
     }
 }
