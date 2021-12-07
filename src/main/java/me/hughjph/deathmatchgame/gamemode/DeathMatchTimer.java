@@ -24,7 +24,6 @@ public class DeathMatchTimer {
 
                 HashMap<Player, Integer> playerKills = lobby.getPlayerKills();
 
-
                 List<Player> playerArray = new ArrayList<>();
 
                 List<Player> addedPlayers = new ArrayList<>();
@@ -46,33 +45,6 @@ public class DeathMatchTimer {
                     playerArray.set(i, newPlayer);
 
                 }
-
-                /*
-                for(Player player: lobby.getPlayers()){
-
-
-                    Integer numberOfKills = playerKills.get(player);
-
-                    if(number1 == null){
-                        number1 = player;
-                    } else if(number2 == null){
-                        number2 = player;
-                    } else if(number3 == null){
-                        number3 = player;
-                    }
-
-                    if(numberOfKills > playerKills.get(number1)){
-                        number3 = number2;
-                        number2 = number1;
-                        number1 = player;
-                    } else if(numberOfKills > playerKills.get(number2) && lobby.getPlayers().size() > 1){
-                        number3 = number2;
-                        number2 = player;
-                    } else if(numberOfKills > playerKills.get(number3) && lobby.getPlayers().size() > 2){
-                        number3 = player;
-                    }
-                }*/
-
 
                 for(Player player : players){
 
@@ -118,9 +90,5 @@ public class DeathMatchTimer {
                 lobby.getDeathMatchArena().getWorldFolder().delete();
             }
         }.runTaskLater(DeathMatchGame.getPlugin(DeathMatchGame.class), 20*5);
-
-
     }
-
-
 }
