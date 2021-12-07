@@ -11,10 +11,16 @@ public class PlayerStats {
 
     public PlayerStats(Player player){
 
-
-
     }
-
+    
+    public Integer getKills(){
+        return Kills;
+    }
+    
+    public Integer getDeaths(){
+        return Deaths;
+    }
+    
     public void increaseKills(){
         Kills++;
     }
